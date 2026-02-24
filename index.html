@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marathon Training Plan</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Marathon Training Plan</h1>
+            <p class="subtitle">First Marathon &middot; 18-Week Program</p>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+            <button class="nav-btn" data-view="plan">Training Plan</button>
+            <button class="nav-btn" data-view="log">Run Log</button>
+            <button class="nav-btn" data-view="settings">Settings</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Dashboard View -->
+        <section id="dashboard-view" class="view active">
+            <div class="dashboard-grid">
+                <div class="card summary-card">
+                    <h2>Training Overview</h2>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-value" id="current-week">--</span>
+                            <span class="stat-label">Current Week</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="current-phase">--</span>
+                            <span class="stat-label">Phase</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="weeks-to-race">--</span>
+                            <span class="stat-label">Weeks to Race</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="total-miles-logged">0</span>
+                            <span class="stat-label">Miles Logged</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card this-week-card">
+                    <h2>This Week</h2>
+                    <div id="this-week-schedule"></div>
+                </div>
+
+                <div class="card pace-card">
+                    <h2>Your Pace Zones</h2>
+                    <div id="pace-zones"></div>
+                </div>
+
+                <div class="card progress-card">
+                    <h2>Weekly Mileage</h2>
+                    <div id="mileage-chart" class="chart-container"></div>
+                </div>
+
+                <div class="card fitness-card">
+                    <h2>Fitness Trend</h2>
+                    <div class="fitness-indicator">
+                        <div class="fitness-bar">
+                            <div class="fitness-fill" id="fitness-fill"></div>
+                        </div>
+                        <p id="fitness-summary">Complete runs and log RPE to track fitness.</p>
+                    </div>
+                    <div id="adaptation-notes"></div>
+                </div>
+
+                <div class="card next-run-card">
+                    <h2>Next Run</h2>
+                    <div id="next-run-details"></div>
+                    <button class="btn btn-primary" id="export-next-garmin">Export to Garmin</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Training Plan View -->
+        <section id="plan-view" class="view">
+            <div class="plan-controls">
+                <div class="plan-filter">
+                    <label>View:</label>
+                    <select id="plan-phase-filter">
+                        <option value="all">All Weeks</option>
+                        <option value="base">Base Building (Wk 1-4)</option>
+                        <option value="build">Building (Wk 5-10)</option>
+                        <option value="peak">Peak (Wk 11-15)</option>
+                        <option value="taper">Taper (Wk 16-18)</option>
+                    </select>
+                </div>
+                <div class="export-controls">
+                    <button class="btn btn-secondary" id="export-week-garmin">Export This Week</button>
+                    <button class="btn btn-secondary" id="export-all-ics">Export Calendar (.ics)</button>
+                </div>
+            </div>
+            <div id="plan-weeks"></div>
+        </section>
+
+        <!-- Run Log View -->
+        <section id="log-view" class="view">
+            <div class="log-header">
+                <h2>Run Log</h2>
+                <div class="log-stats">
+                    <span id="log-total-runs">0 runs</span>
+                    <span id="log-total-miles">0 miles</span>
+                    <span id="log-completion">0% completion</span>
+                </div>
+            </div>
+            <div id="run-log-list"></div>
+        </section>
+
+        <!-- Settings View -->
+        <section id="settings-view" class="view">
+            <div class="card settings-card">
+                <h2>Runner Profile</h2>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="race-date">Target Race Date</label>
+                        <input type="date" id="race-date" name="raceDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="half-time">Half Marathon PR (mm:ss)</label>
+                        <input type="text" id="half-time" name="halfTime" placeholder="112:00" value="112:00">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-mpw">Current Weekly Mileage</label>
+                        <input type="number" id="current-mpw" name="currentMpw" value="20" min="5" max="80">
+                    </div>
+                    <div class="form-group">
+                        <label for="runs-per-week">Runs Per Week</label>
+                        <select id="runs-per-week" name="runsPerWeek">
+                            <option value="4">4 days</option>
+                            <option value="5" selected>5 days</option>
+                            <option value="6">6 days</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal-type">Goal</label>
+                        <select id="goal-type" name="goalType">
+                            <option value="finish">Finish Strong</option>
+                            <option value="time" selected>Target Time</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="target-time-group">
+                        <label for="target-time">Target Marathon Time (h:mm:ss)</label>
+                        <input type="text" id="target-time" name="targetTime" placeholder="4:00:00" value="4:00:00">
+                    </div>
+                    <div class="form-group">
+                        <label for="unit-system">Units</label>
+                        <select id="unit-system" name="units">
+                            <option value="miles" selected>Miles</option>
+                            <option value="km">Kilometers</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save & Regenerate Plan</button>
+                </form>
+            </div>
+
+            <div class="card settings-card">
+                <h2>Garmin Connect Integration</h2>
+                <p class="info-text">Export workouts as TCX files to import into Garmin Connect. Your Garmin Forerunner 55 will sync structured workouts automatically.</p>
+                <div class="garmin-instructions">
+                    <h3>How to Import</h3>
+                    <ol>
+                        <li>Click "Export" on any workout or week</li>
+                        <li>Open <strong>Garmin Connect</strong> on your computer</li>
+                        <li>Go to <strong>Training &rarr; Workouts</strong></li>
+                        <li>Click <strong>Import</strong> and select the downloaded .tcx file</li>
+                        <li>The workout will sync to your Forerunner 55</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card settings-card danger-zone">
+                <h2>Data Management</h2>
+                <button class="btn btn-secondary" id="export-data">Export All Data (JSON)</button>
+                <label class="btn btn-secondary import-btn">
+                    Import Data
+                    <input type="file" id="import-data" accept=".json" hidden>
+                </label>
+                <button class="btn btn-danger" id="reset-data">Reset All Data</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Workout Detail Modal -->
+    <div class="modal" id="workout-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 id="modal-title"></h2>
+            <div id="modal-workout-details"></div>
+            <div class="modal-log-section">
+                <h3>Log This Run</h3>
+                <form id="log-run-form">
+                    <input type="hidden" id="log-week" name="week">
+                    <input type="hidden" id="log-day" name="day">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="log-distance">Actual Distance</label>
+                            <input type="number" id="log-distance" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="log-duration">Duration (mm:ss)</label>
+                            <input type="text" id="log-duration" placeholder="45:00">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="log-rpe">Rate of Perceived Exertion (RPE)</label>
+                        <div class="rpe-selector">
+                            <input type="range" id="log-rpe" min="1" max="10" value="5">
+                            <div class="rpe-labels">
+                                <span>1 - Very Easy</span>
+                                <span>5 - Moderate</span>
+                                <span>10 - Max Effort</span>
+                            </div>
+                            <div class="rpe-value">RPE: <strong id="rpe-display">5</strong></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="log-notes">Notes</label>
+                        <textarea id="log-notes" rows="2" placeholder="How did it feel? Weather? Anything notable?"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-primary">Save Run</button>
+                        <button type="button" class="btn btn-secondary" id="skip-workout-btn">Mark as Skipped</button>
+                        <button type="button" class="btn btn-secondary" id="export-workout-garmin">Export to Garmin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/training-plan.js"></script>
+    <script src="js/garmin-export.js"></script>
+    <script src="js/adaptations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
