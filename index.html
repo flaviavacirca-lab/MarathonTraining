@@ -3,242 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marathon Training Plan</title>
+    <title>Denneen &amp; Company — AI Learning Hub</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Marathon Training Plan</h1>
-            <p class="subtitle">First Marathon &middot; 18-Week Program</p>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-mark">D&amp;C</span>
+            <span class="brand-text">AI Learning Hub</span>
         </div>
-        <nav>
-            <button class="nav-btn active" data-view="dashboard">Dashboard</button>
-            <button class="nav-btn" data-view="plan">Training Plan</button>
-            <button class="nav-btn" data-view="log">Run Log</button>
-            <button class="nav-btn" data-view="settings">Settings</button>
-        </nav>
-    </header>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="prompt-training.html" class="nav-link">Prompt Engineering</a>
+            <a href="market-research.html" class="nav-link">Market Research</a>
+            <a href="email-agent.html" class="nav-link">Email Agent</a>
+            <a href="#feedback" class="nav-link nav-link-accent" id="nav-feedback">Feedback Hub</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
 
     <main>
-        <!-- Dashboard View -->
-        <section id="dashboard-view" class="view active">
-            <div class="dashboard-grid">
-                <div class="card summary-card">
-                    <h2>Training Overview</h2>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <span class="stat-value" id="current-week">--</span>
-                            <span class="stat-label">Current Week</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value" id="current-phase">--</span>
-                            <span class="stat-label">Phase</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value" id="weeks-to-race">--</span>
-                            <span class="stat-label">Weeks to Race</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value" id="total-miles-logged">0</span>
-                            <span class="stat-label">Miles Logged</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card this-week-card">
-                    <h2>This Week</h2>
-                    <div id="this-week-schedule"></div>
-                </div>
-
-                <div class="card pace-card">
-                    <h2>Your Pace Zones</h2>
-                    <div id="pace-zones"></div>
-                </div>
-
-                <div class="card progress-card">
-                    <h2>Weekly Mileage</h2>
-                    <div id="mileage-chart" class="chart-container"></div>
-                </div>
-
-                <div class="card fitness-card">
-                    <h2>Fitness Trend</h2>
-                    <div class="fitness-indicator">
-                        <div class="fitness-bar">
-                            <div class="fitness-fill" id="fitness-fill"></div>
-                        </div>
-                        <p id="fitness-summary">Complete runs and log RPE to track fitness.</p>
-                    </div>
-                    <div id="adaptation-notes"></div>
-                </div>
-
-                <div class="card next-run-card">
-                    <h2>Next Run</h2>
-                    <div id="next-run-details"></div>
-                    <button class="btn btn-primary" id="export-next-garmin">Export to Garmin</button>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to the Denneen&nbsp;&amp;&nbsp;Company AI&nbsp;Learning&nbsp;Hub</h1>
+                <p class="hero-subtitle">Your internal resource for mastering Microsoft Copilot and AI-powered consulting workflows. Explore training modules, practice your prompting skills, and help us shape how we use AI as a team.</p>
+                <div class="hero-actions">
+                    <a href="prompt-training.html" class="btn btn-primary">Start Learning</a>
+                    <a href="#feedback" class="btn btn-outline">Share Feedback</a>
                 </div>
             </div>
         </section>
 
-        <!-- Training Plan View -->
-        <section id="plan-view" class="view">
-            <div class="plan-controls">
-                <div class="plan-filter">
-                    <label>View:</label>
-                    <select id="plan-phase-filter">
-                        <option value="all">All Weeks</option>
-                        <option value="base">Base Building (Wk 1-4)</option>
-                        <option value="build">Building (Wk 5-10)</option>
-                        <option value="peak">Peak (Wk 11-15)</option>
-                        <option value="taper">Taper (Wk 16-18)</option>
-                    </select>
-                </div>
-                <div class="export-controls">
-                    <button class="btn btn-secondary" id="export-week-garmin">Export This Week</button>
-                    <button class="btn btn-secondary" id="export-all-ics">Export Calendar (.ics)</button>
-                </div>
+        <!-- Quick-Start Cards -->
+        <section class="section" id="modules">
+            <h2 class="section-title">Training Modules</h2>
+            <div class="card-grid">
+                <a href="prompt-training.html" class="card card-link">
+                    <div class="card-icon">&#x1F4AC;</div>
+                    <h3>Prompt Engineering</h3>
+                    <p>Learn the structure of effective prompts, practice with an interactive coach, and build confidence using Copilot for everyday consulting work.</p>
+                    <span class="card-cta">Start Module &rarr;</span>
+                </a>
+                <a href="market-research.html" class="card card-link">
+                    <div class="card-icon">&#x1F4CA;</div>
+                    <h3>Market Research with AI</h3>
+                    <p>Use Copilot to accelerate competitive analysis, industry sizing, trend synthesis, and client deliverable creation.</p>
+                    <span class="card-cta">Start Module &rarr;</span>
+                </a>
+                <a href="email-agent.html" class="card card-link">
+                    <div class="card-icon">&#x1F916;</div>
+                    <h3>Build an Email Agent</h3>
+                    <p>Step-by-step guide to building a Copilot agent that drafts emails, reviews your writing, and learns from your communication style.</p>
+                    <span class="card-cta">Start Module &rarr;</span>
+                </a>
+                <a href="#feedback" class="card card-link card-accent">
+                    <div class="card-icon">&#x1F4E3;</div>
+                    <h3>Feedback Hub</h3>
+                    <p>Request new training topics, share how you're using AI, or tell us what's working (and what isn't).</p>
+                    <span class="card-cta">Share Feedback &rarr;</span>
+                </a>
             </div>
-            <div id="plan-weeks"></div>
         </section>
 
-        <!-- Run Log View -->
-        <section id="log-view" class="view">
-            <div class="log-header">
-                <h2>Run Log</h2>
-                <div class="log-stats">
-                    <span id="log-total-runs">0 runs</span>
-                    <span id="log-total-miles">0 miles</span>
-                    <span id="log-completion">0% completion</span>
+        <!-- Quick Tips -->
+        <section class="section section-alt">
+            <h2 class="section-title">Getting Started with Copilot</h2>
+            <div class="tips-grid">
+                <div class="tip">
+                    <div class="tip-number">1</div>
+                    <h4>Access Copilot</h4>
+                    <p>Open Microsoft 365 Copilot from the sidebar in Teams, Outlook, Word, or Excel. You can also visit <strong>copilot.microsoft.com</strong> in your browser.</p>
+                </div>
+                <div class="tip">
+                    <div class="tip-number">2</div>
+                    <h4>Be Specific</h4>
+                    <p>Tell Copilot your <strong>role</strong>, the <strong>task</strong>, the <strong>context</strong>, and the <strong>format</strong> you want. The more detail, the better the output.</p>
+                </div>
+                <div class="tip">
+                    <div class="tip-number">3</div>
+                    <h4>Iterate</h4>
+                    <p>Treat Copilot like a colleague — give feedback on its output, ask it to refine, and build on what it gives you.</p>
+                </div>
+                <div class="tip">
+                    <div class="tip-number">4</div>
+                    <h4>Verify</h4>
+                    <p>Always review AI-generated content for accuracy, especially data points, client names, and strategic recommendations.</p>
                 </div>
             </div>
-            <div id="run-log-list"></div>
         </section>
 
-        <!-- Settings View -->
-        <section id="settings-view" class="view">
-            <div class="card settings-card">
-                <h2>Runner Profile</h2>
-                <form id="settings-form">
+        <!-- Feedback Hub -->
+        <section class="section" id="feedback">
+            <h2 class="section-title">Feedback Hub</h2>
+            <p class="section-desc">Help us improve how Denneen &amp; Company uses AI. Submit training requests, share your experience, or flag issues below. All submissions are sent directly to the AI implementation team.</p>
+
+            <div class="form-tabs">
+                <button class="form-tab active" data-tab="request">Training Request</button>
+                <button class="form-tab" data-tab="feedback">Implementation Feedback</button>
+                <button class="form-tab" data-tab="idea">Idea / Suggestion</button>
+            </div>
+
+            <!-- Training Request Form -->
+            <div class="form-panel active" id="tab-request">
+                <form class="feedback-form" id="form-request" data-type="Training Request">
                     <div class="form-group">
-                        <label for="race-date">Target Race Date</label>
-                        <input type="date" id="race-date" name="raceDate">
+                        <label for="req-name">Your Name</label>
+                        <input type="text" id="req-name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="half-time">Half Marathon PR (mm:ss)</label>
-                        <input type="text" id="half-time" name="halfTime" placeholder="112:00" value="112:00">
+                        <label for="req-topic">What topic or skill would you like training on?</label>
+                        <textarea id="req-topic" name="topic" rows="3" required placeholder="e.g., Using Copilot to summarize long client documents"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="current-mpw">Current Weekly Mileage</label>
-                        <input type="number" id="current-mpw" name="currentMpw" value="20" min="5" max="80">
-                    </div>
-                    <div class="form-group">
-                        <label for="runs-per-week">Runs Per Week</label>
-                        <select id="runs-per-week" name="runsPerWeek">
-                            <option value="4">4 days</option>
-                            <option value="5" selected>5 days</option>
-                            <option value="6">6 days</option>
+                        <label for="req-urgency">How urgent is this?</label>
+                        <select id="req-urgency" name="urgency">
+                            <option value="low">Nice to have</option>
+                            <option value="medium" selected>Would help my current work</option>
+                            <option value="high">Blocking my workflow</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="goal-type">Goal</label>
-                        <select id="goal-type" name="goalType">
-                            <option value="finish">Finish Strong</option>
-                            <option value="time" selected>Target Time</option>
-                        </select>
+                        <label for="req-context">Any additional context?</label>
+                        <textarea id="req-context" name="context" rows="2" placeholder="Optional — describe a specific scenario or challenge"></textarea>
                     </div>
-                    <div class="form-group" id="target-time-group">
-                        <label for="target-time">Target Marathon Time (h:mm:ss)</label>
-                        <input type="text" id="target-time" name="targetTime" placeholder="4:00:00" value="4:00:00">
-                    </div>
-                    <div class="form-group">
-                        <label for="unit-system">Units</label>
-                        <select id="unit-system" name="units">
-                            <option value="miles" selected>Miles</option>
-                            <option value="km">Kilometers</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save & Regenerate Plan</button>
+                    <button type="submit" class="btn btn-primary btn-submit">Submit Request</button>
                 </form>
             </div>
 
-            <div class="card settings-card">
-                <h2>Garmin Connect Integration</h2>
-                <p class="info-text">Export workouts as TCX files to import into Garmin Connect. Your Garmin Forerunner 55 will sync structured workouts automatically.</p>
-                <div class="garmin-instructions">
-                    <h3>How to Import</h3>
-                    <ol>
-                        <li>Click "Export" on any workout or week</li>
-                        <li>Open <strong>Garmin Connect</strong> on your computer</li>
-                        <li>Go to <strong>Training &rarr; Workouts</strong></li>
-                        <li>Click <strong>Import</strong> and select the downloaded .tcx file</li>
-                        <li>The workout will sync to your Forerunner 55</li>
-                    </ol>
-                </div>
+            <!-- Implementation Feedback Form -->
+            <div class="form-panel" id="tab-feedback">
+                <form class="feedback-form" id="form-feedback" data-type="Implementation Feedback">
+                    <div class="form-group">
+                        <label for="fb-name">Your Name</label>
+                        <input type="text" id="fb-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fb-tool">Which AI tool are you providing feedback on?</label>
+                        <select id="fb-tool" name="tool">
+                            <option value="copilot-m365">Microsoft 365 Copilot</option>
+                            <option value="copilot-teams">Copilot in Teams</option>
+                            <option value="copilot-outlook">Copilot in Outlook</option>
+                            <option value="copilot-word">Copilot in Word</option>
+                            <option value="copilot-excel">Copilot in Excel</option>
+                            <option value="copilot-ppt">Copilot in PowerPoint</option>
+                            <option value="copilot-agent">Copilot Agent / Studio</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fb-rating">Overall, how useful has this tool been?</label>
+                        <div class="rating-group">
+                            <label class="rating-option"><input type="radio" name="rating" value="1" required> <span>1 — Not useful</span></label>
+                            <label class="rating-option"><input type="radio" name="rating" value="2"> <span>2</span></label>
+                            <label class="rating-option"><input type="radio" name="rating" value="3"> <span>3 — Neutral</span></label>
+                            <label class="rating-option"><input type="radio" name="rating" value="4"> <span>4</span></label>
+                            <label class="rating-option"><input type="radio" name="rating" value="5"> <span>5 — Very useful</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fb-wins">What's working well?</label>
+                        <textarea id="fb-wins" name="wins" rows="3" placeholder="Describe a specific task where AI helped you"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="fb-challenges">What's not working or could be improved?</label>
+                        <textarea id="fb-challenges" name="challenges" rows="3" required placeholder="Be specific — this helps us prioritize fixes"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">Submit Feedback</button>
+                </form>
             </div>
 
-            <div class="card settings-card danger-zone">
-                <h2>Data Management</h2>
-                <button class="btn btn-secondary" id="export-data">Export All Data (JSON)</button>
-                <label class="btn btn-secondary import-btn">
-                    Import Data
-                    <input type="file" id="import-data" accept=".json" hidden>
-                </label>
-                <button class="btn btn-danger" id="reset-data">Reset All Data</button>
+            <!-- Idea / Suggestion Form -->
+            <div class="form-panel" id="tab-idea">
+                <form class="feedback-form" id="form-idea" data-type="Idea / Suggestion">
+                    <div class="form-group">
+                        <label for="idea-name">Your Name</label>
+                        <input type="text" id="idea-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-title">Idea Title</label>
+                        <input type="text" id="idea-title" name="title" required placeholder="e.g., Auto-generate meeting follow-up emails">
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-desc">Describe your idea</label>
+                        <textarea id="idea-desc" name="description" rows="4" required placeholder="What would it do? How would it help the team?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-impact">Expected impact</label>
+                        <select id="idea-impact" name="impact">
+                            <option value="individual">Helps me personally</option>
+                            <option value="team" selected>Helps the whole team</option>
+                            <option value="client">Improves client deliverables</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">Submit Idea</button>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div class="form-success" id="form-success" hidden>
+                <div class="success-icon">&#x2705;</div>
+                <h3>Thank you!</h3>
+                <p>Your submission has been received and an email notification has been sent to the AI implementation team. We'll follow up if needed.</p>
+                <button class="btn btn-outline" id="submit-another">Submit Another Response</button>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="section section-alt">
+            <h2 class="section-title">Additional Resources</h2>
+            <div class="resource-list">
+                <a href="https://support.microsoft.com/en-us/copilot" class="resource-item" target="_blank" rel="noopener">
+                    <strong>Microsoft Copilot Official Docs</strong>
+                    <span>Microsoft's official getting-started guide and feature reference</span>
+                </a>
+                <a href="https://adoption.microsoft.com/en-us/copilot/" class="resource-item" target="_blank" rel="noopener">
+                    <strong>Microsoft Copilot Adoption Hub</strong>
+                    <span>Best practices, scenarios, and success stories for enterprise Copilot adoption</span>
+                </a>
+                <a href="https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-overview" class="resource-item" target="_blank" rel="noopener">
+                    <strong>Microsoft 365 Copilot Overview</strong>
+                    <span>Technical overview of capabilities across Word, Excel, PowerPoint, Outlook, and Teams</span>
+                </a>
+                <a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/" class="resource-item" target="_blank" rel="noopener">
+                    <strong>Copilot Studio Documentation</strong>
+                    <span>Build and customize your own Copilot agents with Microsoft Copilot Studio</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <!-- Workout Detail Modal -->
-    <div class="modal" id="workout-modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h2 id="modal-title"></h2>
-            <div id="modal-workout-details"></div>
-            <div class="modal-log-section">
-                <h3>Log This Run</h3>
-                <form id="log-run-form">
-                    <input type="hidden" id="log-week" name="week">
-                    <input type="hidden" id="log-day" name="day">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="log-distance">Actual Distance</label>
-                            <input type="number" id="log-distance" step="0.1" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="log-duration">Duration (mm:ss)</label>
-                            <input type="text" id="log-duration" placeholder="45:00">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="log-rpe">Rate of Perceived Exertion (RPE)</label>
-                        <div class="rpe-selector">
-                            <input type="range" id="log-rpe" min="1" max="10" value="5">
-                            <div class="rpe-labels">
-                                <span>1 - Very Easy</span>
-                                <span>5 - Moderate</span>
-                                <span>10 - Max Effort</span>
-                            </div>
-                            <div class="rpe-value">RPE: <strong id="rpe-display">5</strong></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="log-notes">Notes</label>
-                        <textarea id="log-notes" rows="2" placeholder="How did it feel? Weather? Anything notable?"></textarea>
-                    </div>
-                    <div class="form-row">
-                        <button type="submit" class="btn btn-primary">Save Run</button>
-                        <button type="button" class="btn btn-secondary" id="skip-workout-btn">Mark as Skipped</button>
-                        <button type="button" class="btn btn-secondary" id="export-workout-garmin">Export to Garmin</button>
-                    </div>
-                </form>
-            </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Denneen &amp; Company — Internal Use Only</p>
+            <p class="footer-note">Questions? Contact <a href="mailto:flavia.vacirca@denneen.com">flavia.vacirca@denneen.com</a></p>
         </div>
-    </div>
+    </footer>
 
-    <script src="js/training-plan.js"></script>
-    <script src="js/garmin-export.js"></script>
-    <script src="js/adaptations.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

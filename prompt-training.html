@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Engineering — Denneen &amp; Company AI Learning Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-mark">D&amp;C</span>
+            <span class="brand-text">AI Learning Hub</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="prompt-training.html" class="nav-link active">Prompt Engineering</a>
+            <a href="market-research.html" class="nav-link">Market Research</a>
+            <a href="email-agent.html" class="nav-link">Email Agent</a>
+            <a href="index.html#feedback" class="nav-link nav-link-accent">Feedback Hub</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <h1>Prompt Engineering for Consultants</h1>
+            <p>Master the art of communicating with Microsoft Copilot to get high-quality, actionable outputs every time.</p>
+        </section>
+
+        <!-- Why Prompting Matters -->
+        <section class="section">
+            <h2 class="section-title">Why Prompting Matters</h2>
+            <div class="content-block">
+                <p>The quality of what you get from Copilot depends almost entirely on how you ask. A vague prompt gives vague results. A specific, well-structured prompt gives you something you can actually use — sometimes in seconds instead of hours.</p>
+                <p>Think of prompting as giving instructions to a very capable but very literal new analyst. They'll do exactly what you ask, so you need to ask clearly.</p>
+            </div>
+        </section>
+
+        <!-- The CRAFT Framework -->
+        <section class="section section-alt">
+            <h2 class="section-title">The CRAFT Framework</h2>
+            <p class="section-desc">Use this five-part structure every time you prompt Copilot. The more elements you include, the better your result.</p>
+
+            <div class="framework-grid">
+                <div class="framework-item">
+                    <div class="framework-letter">C</div>
+                    <div class="framework-body">
+                        <h3>Context</h3>
+                        <p>Set the scene. What's the situation? Who's the audience? What background does Copilot need?</p>
+                        <div class="example-box">
+                            <strong>Example:</strong> "I'm a strategy consultant preparing a board presentation for a mid-market consumer packaged goods company."
+                        </div>
+                    </div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-letter">R</div>
+                    <div class="framework-body">
+                        <h3>Role</h3>
+                        <p>Tell Copilot what persona to adopt. This shapes the tone, depth, and perspective of the response.</p>
+                        <div class="example-box">
+                            <strong>Example:</strong> "Act as an experienced management consultant with expertise in CPG strategy."
+                        </div>
+                    </div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-letter">A</div>
+                    <div class="framework-body">
+                        <h3>Action</h3>
+                        <p>State clearly what you want Copilot to do. Use action verbs: analyze, summarize, draft, compare, list, outline.</p>
+                        <div class="example-box">
+                            <strong>Example:</strong> "Analyze the competitive landscape for premium pet food in the US market."
+                        </div>
+                    </div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-letter">F</div>
+                    <div class="framework-body">
+                        <h3>Format</h3>
+                        <p>Specify the output format: bullet points, table, executive summary, email, slide outline, etc.</p>
+                        <div class="example-box">
+                            <strong>Example:</strong> "Present this as a table with columns for competitor, market share estimate, key differentiators, and strategic positioning."
+                        </div>
+                    </div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-letter">T</div>
+                    <div class="framework-body">
+                        <h3>Tone &amp; Constraints</h3>
+                        <p>Set boundaries: word count, tone (formal/casual), what to include or exclude, and any constraints.</p>
+                        <div class="example-box">
+                            <strong>Example:</strong> "Keep it under 300 words. Use a professional but accessible tone suitable for a C-suite audience. Do not include speculative revenue figures."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prompt Patterns for Consulting -->
+        <section class="section">
+            <h2 class="section-title">Prompt Patterns for Consulting Work</h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Summarizing a Long Document</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="prompt-template">
+                            <p class="prompt-label">Template:</p>
+                            <pre class="prompt-code">Summarize the following [document type] in [number] bullet points.
+Focus on: [key themes or topics].
+Audience: [who will read this].
+Exclude: [anything irrelevant].
+
+[Paste or reference the document]</pre>
+                        </div>
+                        <div class="prompt-template">
+                            <p class="prompt-label">Example:</p>
+                            <pre class="prompt-code">Summarize this 40-page industry report in 8 bullet points.
+Focus on: market size, growth drivers, and competitive dynamics.
+Audience: A partner at a strategy consulting firm.
+Exclude: methodology details and appendix data.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Drafting Client Emails</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="prompt-template">
+                            <p class="prompt-label">Template:</p>
+                            <pre class="prompt-code">Draft a [tone] email to [recipient role] regarding [topic].
+Key points to cover:
+- [Point 1]
+- [Point 2]
+- [Point 3]
+Keep it under [word count] words. End with [specific CTA].</pre>
+                        </div>
+                        <div class="prompt-template">
+                            <p class="prompt-label">Example:</p>
+                            <pre class="prompt-code">Draft a professional but warm email to the VP of Strategy at a retail client
+regarding the preliminary findings from our competitive analysis.
+Key points to cover:
+- We've identified 3 key strategic opportunities
+- We'd like to schedule a working session next week to discuss
+- Preliminary deck is attached for review
+Keep it under 150 words. End with a question asking for their preferred meeting time.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Building a Slide Outline</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="prompt-template">
+                            <p class="prompt-label">Template:</p>
+                            <pre class="prompt-code">Create a [number]-slide outline for a presentation on [topic].
+Audience: [who].
+Goal: [what should they walk away with].
+For each slide, provide:
+- Slide title
+- 3-4 key bullet points
+- Suggested visual or chart type</pre>
+                        </div>
+                        <div class="prompt-template">
+                            <p class="prompt-label">Example:</p>
+                            <pre class="prompt-code">Create a 10-slide outline for a board presentation on digital transformation
+opportunities in specialty retail.
+Audience: CEO and Board of Directors of a $500M specialty retailer.
+Goal: Secure approval for a $2M digital investment over 18 months.
+For each slide, provide:
+- Slide title
+- 3-4 key bullet points
+- Suggested visual or chart type</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Competitive Analysis</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="prompt-template">
+                            <p class="prompt-label">Template:</p>
+                            <pre class="prompt-code">Act as a strategy consultant. Create a competitive analysis of [market/industry].
+Include the following for each competitor:
+- Company overview (1-2 sentences)
+- Key strengths and weaknesses
+- Market positioning
+- Recent strategic moves
+
+Present as a formatted table. Include [number] competitors.
+Focus on the [geographic] market.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Data Interpretation</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="prompt-template">
+                            <p class="prompt-label">Template:</p>
+                            <pre class="prompt-code">I have the following data: [paste data or describe dataset].
+Analyze this and tell me:
+1. What are the top 3 trends?
+2. Are there any outliers or anomalies?
+3. What story does this data tell for [audience]?
+Present your analysis as [format].</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Brainstorming &amp; Hypothesis Generation</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="prompt-template">
+                            <p class="prompt-label">Template:</p>
+                            <pre class="prompt-code">I'm working on a strategy engagement for [client context].
+The core question is: [strategic question].
+Generate [number] hypotheses for why [observed trend or challenge].
+For each hypothesis, provide:
+- The hypothesis statement
+- Supporting logic
+- How we could test/validate it
+- Potential data sources</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Mistakes -->
+        <section class="section section-alt">
+            <h2 class="section-title">Common Mistakes to Avoid</h2>
+            <div class="mistakes-grid">
+                <div class="mistake-card">
+                    <div class="mistake-bad">&#x2717; "Summarize this."</div>
+                    <div class="mistake-good">&#x2713; "Summarize this 40-page industry report in 8 bullet points, focused on market size and competitive dynamics, for a consulting partner."</div>
+                    <p>Without context, Copilot doesn't know what matters to you.</p>
+                </div>
+                <div class="mistake-card">
+                    <div class="mistake-bad">&#x2717; "Write an email to the client."</div>
+                    <div class="mistake-good">&#x2713; "Draft a professional email to the VP of Strategy summarizing our Phase 1 findings. Include three key takeaways and a request to schedule a review meeting. Keep it under 150 words."</div>
+                    <p>Specificity in audience, content, and format transforms the output.</p>
+                </div>
+                <div class="mistake-card">
+                    <div class="mistake-bad">&#x2717; Accepting the first output as final.</div>
+                    <div class="mistake-good">&#x2713; "Good start. Now make the tone more confident and add a specific data point from the analysis to support the second bullet."</div>
+                    <p>Always iterate. The first response is a draft, not a deliverable.</p>
+                </div>
+                <div class="mistake-card">
+                    <div class="mistake-bad">&#x2717; Asking for things Copilot can't verify.</div>
+                    <div class="mistake-good">&#x2713; "Based on public information, what are the reported revenue ranges for these competitors? Flag any figures you're uncertain about."</div>
+                    <p>Ask Copilot to flag uncertainty rather than trusting everything it generates.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Prompt Coach -->
+        <section class="section" id="prompt-coach">
+            <h2 class="section-title">Interactive Prompt Coach</h2>
+            <p class="section-desc">Practice writing prompts and get instant feedback on their structure and effectiveness. Our coach evaluates your prompt against the CRAFT framework and suggests improvements.</p>
+
+            <div class="coach-container">
+                <div class="coach-input">
+                    <label for="user-prompt">Write your prompt below:</label>
+                    <textarea id="user-prompt" rows="6" placeholder="e.g., Act as a strategy consultant. Summarize this industry report in 5 bullet points focused on growth drivers and competitive threats. Format as an executive briefing for a C-suite audience. Keep it under 200 words."></textarea>
+                    <div class="coach-actions">
+                        <button class="btn btn-primary" id="analyze-prompt">Analyze My Prompt</button>
+                        <button class="btn btn-outline" id="clear-prompt">Clear</button>
+                    </div>
+                </div>
+
+                <div class="coach-results" id="coach-results" hidden>
+                    <h3>Prompt Analysis</h3>
+                    <div class="score-display">
+                        <div class="score-circle" id="prompt-score">
+                            <span class="score-value">0</span>
+                            <span class="score-label">/ 100</span>
+                        </div>
+                    </div>
+                    <div class="craft-checklist" id="craft-checklist"></div>
+                    <div class="coach-suggestions" id="coach-suggestions"></div>
+                    <div class="improved-prompt" id="improved-prompt" hidden>
+                        <h4>Suggested Improvement</h4>
+                        <pre class="prompt-code" id="improved-prompt-text"></pre>
+                    </div>
+                </div>
+
+                <!-- Copilot Integration -->
+                <div class="copilot-section">
+                    <h3>Try It in Copilot</h3>
+                    <p>Once you're happy with your prompt, try it directly in Microsoft Copilot:</p>
+                    <div class="copilot-actions">
+                        <button class="btn btn-primary" id="copy-prompt">Copy Prompt to Clipboard</button>
+                        <a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="btn btn-outline">Open Microsoft Copilot</a>
+                    </div>
+                    <p class="copilot-note">You can also use your prompt in Copilot within Word, Excel, Outlook, or Teams — just paste it into the Copilot chat panel in any M365 app.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section class="section section-alt">
+            <h2 class="section-title">Quick Reference: Power Phrases</h2>
+            <p class="section-desc">Bookmark-worthy phrases to level up any prompt.</p>
+            <div class="cheatsheet-grid">
+                <div class="cheatsheet-item">
+                    <code>"Act as a [role] with expertise in [domain]"</code>
+                    <span>Sets Copilot's perspective</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"Present this as a [format] with [columns/sections]"</code>
+                    <span>Controls output structure</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"Keep it under [N] words/bullets"</code>
+                    <span>Sets length constraints</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"The audience is [role] who needs [outcome]"</code>
+                    <span>Calibrates tone and depth</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"Flag any assumptions or uncertain data"</code>
+                    <span>Encourages transparency</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"Compare [A] and [B] across [criteria]"</code>
+                    <span>Structured comparison</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"Generate [N] options, then recommend the best with rationale"</code>
+                    <span>Gets exploration + recommendation</span>
+                </div>
+                <div class="cheatsheet-item">
+                    <code>"First, outline your approach. Then execute."</code>
+                    <span>Forces structured thinking</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Denneen &amp; Company — Internal Use Only</p>
+            <p class="footer-note">Questions? Contact <a href="mailto:flavia.vacirca@denneen.com">flavia.vacirca@denneen.com</a></p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/prompt-coach.js"></script>
+</body>
+</html>

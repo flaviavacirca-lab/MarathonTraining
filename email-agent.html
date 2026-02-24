@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build an Email Agent — Denneen &amp; Company AI Learning Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-mark">D&amp;C</span>
+            <span class="brand-text">AI Learning Hub</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="prompt-training.html" class="nav-link">Prompt Engineering</a>
+            <a href="market-research.html" class="nav-link">Market Research</a>
+            <a href="email-agent.html" class="nav-link active">Email Agent</a>
+            <a href="index.html#feedback" class="nav-link nav-link-accent">Feedback Hub</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <h1>Build a Copilot Email Agent</h1>
+            <p>A step-by-step guide to building a custom Microsoft Copilot agent that helps you draft, review, and improve emails — trained on your own communication history.</p>
+        </section>
+
+        <!-- Overview -->
+        <section class="section">
+            <h2 class="section-title">What You'll Build</h2>
+            <div class="content-block">
+                <p>By the end of this guide, you'll have a custom Copilot agent that can:</p>
+                <ul class="feature-list">
+                    <li><strong>Draft new emails</strong> based on a brief description of what you need to communicate</li>
+                    <li><strong>Review and improve drafts</strong> you've written, suggesting better phrasing, tone adjustments, and structural improvements</li>
+                    <li><strong>Match your writing style</strong> by learning from your sent emails and communication patterns</li>
+                    <li><strong>Adapt tone for different audiences</strong> — internal team vs. C-suite client vs. vendor</li>
+                    <li><strong>Suggest follow-ups</strong> based on email threads and outstanding action items</li>
+                </ul>
+            </div>
+
+            <div class="content-block callout">
+                <h4>Prerequisites</h4>
+                <ul>
+                    <li>Microsoft 365 license with Copilot access</li>
+                    <li>Access to Microsoft Copilot Studio (formerly Power Virtual Agents)</li>
+                    <li>Microsoft Outlook with your Denneen &amp; Company email</li>
+                    <li>Approximately 30-60 minutes for initial setup</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 1: Access Copilot Studio -->
+        <section class="section section-alt">
+            <h2 class="section-title">Step 1: Access Microsoft Copilot Studio</h2>
+
+            <div class="step-detail">
+                <div class="step-instructions">
+                    <ol class="numbered-steps">
+                        <li>
+                            <strong>Open Copilot Studio</strong>
+                            <p>Navigate to <a href="https://copilotstudio.microsoft.com" target="_blank" rel="noopener">copilotstudio.microsoft.com</a> and sign in with your Denneen &amp; Company Microsoft 365 account.</p>
+                        </li>
+                        <li>
+                            <strong>Create a New Agent</strong>
+                            <p>Click <strong>"Create"</strong> in the left sidebar, then select <strong>"New agent"</strong>. You'll be prompted to describe what you want the agent to do.</p>
+                        </li>
+                        <li>
+                            <strong>Name Your Agent</strong>
+                            <p>Give it a clear, descriptive name like <strong>"DC Email Assistant"</strong> or <strong>"[Your Name] Email Coach"</strong>.</p>
+                        </li>
+                        <li>
+                            <strong>Describe the Agent's Purpose</strong>
+                            <p>In the description field, enter something like:</p>
+                            <div class="prompt-template">
+                                <pre class="prompt-code">This agent helps Denneen & Company consultants draft
+professional emails, review email drafts for tone and
+clarity, and maintain consistent communication standards
+with clients, partners, and internal team members.</pre>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Configure Knowledge Sources -->
+        <section class="section">
+            <h2 class="section-title">Step 2: Connect Your Email as a Knowledge Source</h2>
+            <p class="section-desc">This is the key step — giving your agent access to your email history so it can learn your communication patterns and style.</p>
+
+            <div class="step-detail">
+                <div class="step-instructions">
+                    <ol class="numbered-steps">
+                        <li>
+                            <strong>Open the Knowledge Panel</strong>
+                            <p>In your agent's configuration page, click the <strong>"Knowledge"</strong> section (or the <strong>"+"</strong> button next to Knowledge sources).</p>
+                        </li>
+                        <li>
+                            <strong>Add Microsoft Graph / Outlook as a Source</strong>
+                            <p>Select <strong>"Microsoft 365"</strong> or <strong>"Outlook"</strong> as a knowledge source. This uses Microsoft Graph to give the agent access to your email data.</p>
+                            <div class="content-block callout callout-info">
+                                <h4>What This Means for Privacy</h4>
+                                <p>The agent accesses emails through Microsoft Graph with your permissions. It operates within your existing M365 security boundary — no data leaves your organization's Microsoft tenant. The agent can only access emails you have permission to view.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Configure Email Access Scope</strong>
+                            <p>Set the scope of what the agent can access:</p>
+                            <ul>
+                                <li><strong>Sent Items</strong> — Essential. This is how the agent learns your writing style.</li>
+                                <li><strong>Inbox</strong> — Enables the agent to understand context from received emails when drafting replies.</li>
+                                <li><strong>Specific Folders</strong> — If you organize client emails into folders, you can point the agent to specific ones.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Optional: Add SharePoint Templates</strong>
+                            <p>If Denneen &amp; Company has email templates or communication guidelines on SharePoint, add that as an additional knowledge source. Click <strong>"Add knowledge" &rarr; "SharePoint"</strong> and point to the relevant document library.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3: Define the Agent's Instructions -->
+        <section class="section section-alt">
+            <h2 class="section-title">Step 3: Write the Agent's System Instructions</h2>
+            <p class="section-desc">The instructions tell the agent how to behave. This is the most important configuration step — think of it as the agent's "personality and rules."</p>
+
+            <div class="step-detail">
+                <p>In the <strong>"Instructions"</strong> field of your agent, paste and customize the following:</p>
+
+                <div class="prompt-template prompt-template-lg">
+                    <p class="prompt-label">Recommended System Instructions (customize the bracketed sections):</p>
+                    <pre class="prompt-code">You are an email assistant for a management consultant at Denneen & Company,
+a strategy consulting firm. Your role is to help draft, review, and improve
+professional emails.
+
+## Your Capabilities
+1. **Draft Emails**: When given a brief description, draft a complete email
+   matching the user's writing style and tone.
+2. **Review Drafts**: When given an email draft, provide specific feedback
+   on tone, clarity, structure, and professionalism.
+3. **Suggest Improvements**: Offer concrete rewrites, not just general advice.
+4. **Adapt Tone**: Adjust formality based on the recipient:
+   - Client C-suite: Formal, concise, strategic
+   - Client working team: Professional but collaborative
+   - Internal Denneen team: Direct, efficient, collegial
+   - Vendors/partners: Professional, clear on expectations
+
+## Writing Style Guidelines
+- Be concise. Consultants and executives are busy.
+- Lead with the key message or ask — don't bury it.
+- Use bullet points for multiple items or action steps.
+- End with a clear call to action or next step.
+- Avoid jargon unless the recipient uses it.
+- Match the formality level of the thread.
+
+## When Reviewing Emails
+Evaluate against these criteria:
+1. **Clarity**: Is the purpose of the email immediately clear?
+2. **Tone**: Is it appropriate for the recipient and situation?
+3. **Structure**: Does it flow logically? Is it scannable?
+4. **Action**: Is there a clear next step or ask?
+5. **Length**: Could anything be cut without losing meaning?
+6. **Professionalism**: Any wording that could be misread?
+
+Provide feedback as specific suggestions, not vague guidance.
+Example: Instead of "make it more professional," say "Replace
+'just wanted to check in' with 'Following up on our discussion
+regarding...'"
+
+## Constraints
+- Never fabricate information about Denneen & Company or its clients.
+- If asked about something you don't know, say so.
+- Always preserve the user's key points — improve the delivery,
+  don't change the message.
+- Keep confidential information within the organization's boundaries.</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4: Create Topics / Actions -->
+        <section class="section">
+            <h2 class="section-title">Step 4: Set Up Conversation Topics</h2>
+            <p class="section-desc">Topics define the specific things your agent can do. Set up these core conversation flows:</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Topic 1: Draft a New Email</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="topic-setup">
+                            <h4>Trigger Phrases:</h4>
+                            <ul>
+                                <li>"Draft an email"</li>
+                                <li>"Write an email to..."</li>
+                                <li>"Help me compose a message"</li>
+                                <li>"I need to email someone about..."</li>
+                            </ul>
+
+                            <h4>Agent Flow:</h4>
+                            <ol class="numbered-steps">
+                                <li>Agent asks: "Who is the recipient and what's their role?"</li>
+                                <li>Agent asks: "What's the main message or purpose?"</li>
+                                <li>Agent asks: "Any specific points to include?"</li>
+                                <li>Agent asks: "What tone — formal, collaborative, or direct?"</li>
+                                <li>Agent generates the draft based on your style patterns from sent emails</li>
+                                <li>Agent asks: "Would you like me to adjust anything?"</li>
+                            </ol>
+
+                            <h4>Configuration in Copilot Studio:</h4>
+                            <p>Create a new topic, add the trigger phrases, then use the <strong>"Generative answers"</strong> node connected to your Outlook knowledge source. The agent will reference your past emails to match your style.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Topic 2: Review My Draft</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="topic-setup">
+                            <h4>Trigger Phrases:</h4>
+                            <ul>
+                                <li>"Review this email"</li>
+                                <li>"Check my draft"</li>
+                                <li>"How does this email sound?"</li>
+                                <li>"Improve this message"</li>
+                            </ul>
+
+                            <h4>Agent Flow:</h4>
+                            <ol class="numbered-steps">
+                                <li>Agent asks: "Please paste your email draft."</li>
+                                <li>Agent asks: "Who is the recipient?"</li>
+                                <li>Agent evaluates against the review criteria in its instructions</li>
+                                <li>Agent provides specific feedback with suggested rewrites</li>
+                                <li>Agent offers to generate a revised version</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Topic 3: Reply to an Email</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="topic-setup">
+                            <h4>Trigger Phrases:</h4>
+                            <ul>
+                                <li>"Help me reply to..."</li>
+                                <li>"Draft a response"</li>
+                                <li>"Reply to this email"</li>
+                            </ul>
+
+                            <h4>Agent Flow:</h4>
+                            <ol class="numbered-steps">
+                                <li>Agent asks: "Paste the email you're replying to (or describe the context)."</li>
+                                <li>Agent asks: "What do you want to communicate in your reply?"</li>
+                                <li>Agent drafts a reply that:
+                                    <ul>
+                                        <li>Matches the tone of the thread</li>
+                                        <li>Addresses all points raised in the original email</li>
+                                        <li>Follows your typical reply patterns</li>
+                                    </ul>
+                                </li>
+                                <li>Agent asks: "Should I adjust anything?"</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Topic 4: Adjust Tone</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <div class="topic-setup">
+                            <h4>Trigger Phrases:</h4>
+                            <ul>
+                                <li>"Make this more formal"</li>
+                                <li>"Make this friendlier"</li>
+                                <li>"Adjust the tone of this email"</li>
+                                <li>"Make this more direct"</li>
+                            </ul>
+
+                            <h4>Agent Flow:</h4>
+                            <ol class="numbered-steps">
+                                <li>Agent asks for the email text (if not already provided)</li>
+                                <li>Agent asks for the desired tone shift</li>
+                                <li>Agent rewrites maintaining the same content but adjusting:
+                                    <ul>
+                                        <li>Vocabulary and phrasing</li>
+                                        <li>Sentence structure and length</li>
+                                        <li>Level of directness</li>
+                                        <li>Opening and closing</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5: Test -->
+        <section class="section section-alt">
+            <h2 class="section-title">Step 5: Test Your Agent</h2>
+
+            <div class="step-detail">
+                <div class="step-instructions">
+                    <ol class="numbered-steps">
+                        <li>
+                            <strong>Use the Built-in Test Panel</strong>
+                            <p>In Copilot Studio, click <strong>"Test your agent"</strong> in the top-right corner. A chat panel opens where you can interact with your agent.</p>
+                        </li>
+                        <li>
+                            <strong>Test Each Topic</strong>
+                            <p>Run through each conversation topic to make sure the flows work correctly:</p>
+                            <div class="prompt-template">
+                                <p class="prompt-label">Test prompts to try:</p>
+                                <pre class="prompt-code">"Draft an email to the CFO of a retail client summarizing
+our Phase 1 findings and requesting a meeting next week."
+
+"Review this draft: Hi John, Just wanted to touch base
+on the project. Things are going well. Let me know if
+you need anything. Thanks, [Name]"
+
+"Make this more formal and suitable for a CEO:
+Hey team, quick update — we're on track and the
+numbers look good. Will share more Friday."</pre>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Check Style Matching</strong>
+                            <p>Compare the agent's output to your actual sent emails. Does it sound like you? If not, refine the system instructions — add specific phrases you use, or note patterns to follow.</p>
+                        </li>
+                        <li>
+                            <strong>Iterate on Instructions</strong>
+                            <p>Common refinements:</p>
+                            <ul>
+                                <li>Add your preferred email sign-off</li>
+                                <li>Specify formatting preferences (bullets vs. paragraphs)</li>
+                                <li>Add specific phrases or vocabulary you commonly use</li>
+                                <li>Note any phrases or words to avoid</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 6: Deploy -->
+        <section class="section">
+            <h2 class="section-title">Step 6: Deploy &amp; Use Daily</h2>
+
+            <div class="step-detail">
+                <div class="step-instructions">
+                    <ol class="numbered-steps">
+                        <li>
+                            <strong>Publish the Agent</strong>
+                            <p>Click <strong>"Publish"</strong> in the top-right of Copilot Studio. Your agent is now live and accessible.</p>
+                        </li>
+                        <li>
+                            <strong>Access in Microsoft Teams</strong>
+                            <p>The easiest way to use your agent daily is through Teams:</p>
+                            <ul>
+                                <li>Open Microsoft Teams</li>
+                                <li>Go to <strong>Apps</strong> (left sidebar)</li>
+                                <li>Search for your agent name (e.g., "DC Email Assistant")</li>
+                                <li>Pin it to your sidebar for quick access</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Access in Copilot Chat</strong>
+                            <p>You can also access your agent through the main Copilot interface:</p>
+                            <ul>
+                                <li>Open Microsoft 365 Copilot</li>
+                                <li>Type <strong>@[Your Agent Name]</strong> to invoke it directly in Copilot chat</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Share with Your Team</strong>
+                            <p>If you build an agent that works well, you can share it with colleagues:</p>
+                            <ul>
+                                <li>In Copilot Studio, go to <strong>Settings &rarr; Security</strong></li>
+                                <li>Add team members or a security group</li>
+                                <li>They'll be able to use the agent but with access only to their own emails</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Usage Tips -->
+        <section class="section section-alt">
+            <h2 class="section-title">Daily Usage Patterns</h2>
+            <p class="section-desc">Here's how to get the most out of your email agent in your day-to-day consulting work.</p>
+
+            <div class="tips-grid">
+                <div class="tip">
+                    <div class="tip-number">AM</div>
+                    <h4>Morning Email Blitz</h4>
+                    <p>Open your agent in Teams alongside Outlook. For each email that needs a reply, describe the key points to the agent and let it draft responses. Review, adjust, and send. You can clear your inbox significantly faster.</p>
+                </div>
+                <div class="tip">
+                    <div class="tip-number">PM</div>
+                    <h4>Client Update Emails</h4>
+                    <p>At the end of the day, use the agent to draft client status updates. Tell it the key progress points, any blockers, and next steps — it'll format a professional update email in your style.</p>
+                </div>
+                <div class="tip">
+                    <div class="tip-number">&#x26A0;</div>
+                    <h4>Sensitive Communications</h4>
+                    <p>For difficult emails (pushing back on scope, delivering bad news, negotiating), write the first draft yourself, then ask the agent to review for tone. This catches wording that might be too blunt or too passive.</p>
+                </div>
+                <div class="tip">
+                    <div class="tip-number">&#x21BB;</div>
+                    <h4>Follow-Up Sequences</h4>
+                    <p>Ask the agent: "Draft a polite follow-up to [person] about [topic]. This is the second follow-up — the first was sent last Tuesday." It'll calibrate the urgency and tone appropriately.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced: Customization -->
+        <section class="section">
+            <h2 class="section-title">Advanced Customizations</h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Add Client-Specific Context</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Create a SharePoint document with key information about your active clients (names, project context, stakeholder preferences) and add it as a knowledge source. Then the agent can reference this when drafting:</p>
+                        <div class="prompt-template">
+                            <pre class="prompt-code">"Draft an email to Sarah at Acme Corp about the
+competitive analysis."
+
+→ Agent knows Sarah is the VP of Strategy, that the
+  project is a growth strategy engagement, and that
+  she prefers concise, data-driven communication.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Email Templates as Knowledge</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Upload common email templates (project kickoff, status update, deliverable sharing, meeting request) to SharePoint and connect them. The agent will use these as starting frameworks:</p>
+                        <ul>
+                            <li>Project kickoff email template</li>
+                            <li>Weekly status update template</li>
+                            <li>Deliverable sharing email template</li>
+                            <li>Meeting scheduling template</li>
+                            <li>Thank you / wrap-up email template</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Connect to Power Automate for Smart Follow-Ups</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>For an advanced setup, connect your agent to Power Automate to enable automated workflows:</p>
+                        <ol class="numbered-steps">
+                            <li>In Copilot Studio, go to <strong>Actions &rarr; Add an action &rarr; Power Automate</strong></li>
+                            <li>Create a flow that:
+                                <ul>
+                                    <li>Checks your Sent Items for emails that haven't received a reply in X days</li>
+                                    <li>Sends you a Teams notification with a suggested follow-up draft</li>
+                                </ul>
+                            </li>
+                            <li>You review the suggestion and send with one click</li>
+                        </ol>
+                        <p>This turns your agent from a reactive tool into a proactive assistant.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Multi-Language Support</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>If you communicate with international clients, add these instructions to your agent:</p>
+                        <div class="prompt-template">
+                            <pre class="prompt-code">When asked to draft in a specific language, maintain the
+same professional tone and structure. If the user writes
+in English but the recipient needs the email in another
+language, draft in both languages for review.
+
+Adapt formality conventions to the target culture:
+- German: More formal, use titles
+- French: Formal opening and closing conventions
+- Japanese: High formality, indirect communication style
+- Spanish: Warm but professional</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="section section-alt">
+            <h2 class="section-title">Troubleshooting</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>"The agent doesn't sound like me"</h4>
+                    <p>Add more specific style guidance to the instructions. Include 2-3 example emails you've written that represent your ideal style. You can paste these directly into the instructions as reference examples.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"It's not accessing my emails"</h4>
+                    <p>Check the knowledge source configuration. Make sure Microsoft Graph permissions are granted. You may need your IT admin to approve the connection if it's the first time setting this up in your tenant.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"The tone is too casual / too formal"</h4>
+                    <p>Adjust the tone guidelines in your system instructions. Be explicit: "Default tone should be [professional but approachable]. Only use formal tone for C-suite executives at client organizations."</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"It generates very long emails"</h4>
+                    <p>Add a constraint to your instructions: "Default email length should be under 150 words unless the user specifies otherwise. Brevity is valued at Denneen & Company."</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"I can't find Copilot Studio"</h4>
+                    <p>Contact your Microsoft 365 administrator. Copilot Studio requires specific licensing. If you don't have access, reach out to <a href="mailto:flavia.vacirca@denneen.com">flavia.vacirca@denneen.com</a> and we'll get you set up.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Denneen &amp; Company — Internal Use Only</p>
+            <p class="footer-note">Questions? Contact <a href="mailto:flavia.vacirca@denneen.com">flavia.vacirca@denneen.com</a></p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
